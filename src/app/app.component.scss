@@ -1,0 +1,43 @@
+.main {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 40px;
+
+  h1{
+    float: left;
+  }
+
+  .open-modal-btn{
+    float: right;
+  }
+
+  dialog{
+    margin: 0 auto;
+  }
+
+  .nes-container{
+    margin-top: 80px;
+  }
+
+
+  .books-list{
+    display: flex;
+    flex-wrap: wrap;
+
+    .book{
+      display: flex;
+      height: 300px;
+      flex-direction: column;
+      align-items: center;
+
+      box-sizing: border-box;
+      width: 25%;
+      padding: 20px;
+      margin-top: 20px;
+
+      img {
+        width: 150px;
+      }
+    }
+  }
+}

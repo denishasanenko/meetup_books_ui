@@ -1,0 +1,44 @@
+<div class="main">
+
+    <h1>
+        <i class="nes-icon heart"></i>BOOKSHELF
+
+    </h1>
+
+    <section>
+        <button type="button" class="nes-btn is-primary open-modal-btn" (click)="openModal()">Upload yet one</button>
+        <dialog class="nes-dialog is-dark is-rounded" id="dialog-dark-rounded" #dialog>
+            <form method="dialog">
+                <div>
+                    <div class="nes-field">
+                        <label for="name_field">Book name</label>
+                        <input type="text" id="name_field" class="nes-input" [(ngModel)]="form.book_name" name="book_name">
+                    </div>
+                    <div class="nes-field">
+                        <label for="name_field">Author name</label>
+                        <input type="text" id="author_field" class="nes-input" [(ngModel)]="form.author_name" name="author_name">
+                    </div>
+                    <div class="nes-field">
+                        <label for="name_field">File</label>
+                        <input type="file" id="file" class="nes-input"  (change)="setFileData($event)">
+                    </div>
+                </div>
+                <menu class="dialog-menu">
+                    <button class="nes-btn" (click)="closeDialog()">Cancel</button>
+                    <button class="nes-btn is-primary" (click)="upload()">Save</button>
+                </menu>
+            </form>
+        </dialog>
+    </section>
+
+    <div class="nes-container with-title is-centered">
+        <p class="title">Your books</p>
+        <div class="books-list">
+            <div class="book" *ngFor="let book of books">
+                <img [src]="'http://localhost:3001/'+book.image" />
+                <a target="_blank" [href]="'http://localhost:3001/'+book.file">{{book.book_name}}</a>
+                <p>{{book.author_name}}</p>
+            </div>
+        </div>
+    </div>
+</div>

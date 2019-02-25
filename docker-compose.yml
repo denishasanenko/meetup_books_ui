@@ -1,0 +1,43 @@
+version: '3'
+services:
+  books_ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3005:80
+  files_api:
+    image: "fondifond/files_api"
+    ports:
+      - 3001:3001
+    volumes:
+      - /projects/files_api/files:/usr/src/files
+    environment:
+      - APP_PORT=3001
+  pdf_api:
+    image: "fondifond/pdf_api"
+    ports:
+      - 3002:3002
+    volumes:
+      - /projects/pdf_image_api/files:/usr/src/files
+    links:
+      - files_api:files_api
+    environment:
+      - APP_PORT=3002
+      - FILES_API=http://files_api:3001
+  books_api:
+    image: "fondifond/books_api"
+    ports:
+      - 3000:3000
+    links:
+      - files_api:files_api
+      - pdf_api:pdf_api
+    environment:
+      - APP_PORT=3000
+      - DB_USER=postgres
+      - DB_PASS=Tre13ieme
+      - DB_HOST=docker.for.mac.localhost
+      - DB_PORT=5432
+      - DB=books_api
+      - FILES_API=http://files_api:3001
+      - PDF_API=http://pdf_api:3002
