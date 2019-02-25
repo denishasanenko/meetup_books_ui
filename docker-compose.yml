@@ -1,9 +1,7 @@
 version: '3'
 services:
   books_ui:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: "fondifond/books_ui"
     ports:
       - 3005:80
   files_api:
